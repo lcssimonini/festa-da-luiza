@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viagem de Aniversário da Luiza ✨</title>
+  <meta name="description" content="Site fofíssimo para organizar e encantar: viagem de aniversário da Luiza para o show da Bea Duarte em BH." />
+  <style>
+    :root{
+      --bg: #0b0d10;        /* dark base */
+      --card: #12161b;
+      --ink: #eaf2ff;
+      --muted: #b5c6ff;
+      --brand: #7c8cff;     /* lilac */
+      --accent: #ff7ac6;    /* pink */
+      --lime: #b6ffb6;      /* lime */
+      --sun: #ffd166;       /* yellow */
+      --good: #7ef7d0;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 22px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;}
+    body{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink); background: radial-gradient(1200px 800px at 80% -10%, #1b2130, var(--bg));
+      line-height:1.4; letter-spacing:.2px; overflow-x:hidden;
+    }
+    /* Header */
+    header{
+      position:relative; padding:64px 20px 30px; text-align:center;
+      background: conic-gradient(from 220deg at 50% 0%, #1c2030, #0e1016 70%);
+      border-bottom: 1px solid #202636;
+    }
+    .title{font-size: clamp(28px, 5vw, 54px); margin:0 0 8px; font-weight:800;}
+    .subtitle{margin:0; color:var(--muted); font-size: clamp(14px, 2.5vw, 18px)}
+    .pills{margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    .pill{padding:10px 14px; border-radius:999px; background:#1b2130; color:var(--muted); border:1px solid #2a3246}
+    .shine{
+      position:absolute; inset:auto 0 -25px; height:50px; filter:blur(18px);
+      background: radial-gradient(80% 120% at 50% 0, rgba(124,140,255,.35), rgba(255,122,198,.25), transparent 70%);
+      pointer-events:none;
+    }
+
+    /* Layout */
+    .container{max-width:1000px; margin:0 auto; padding:28px 16px 64px;}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:18px}
+    .col-12{grid-column: span 12}
+    .col-8{grid-column: span 8}
+    .col-6{grid-column: span 6}
+    .col-4{grid-column: span 4}
+    @media (max-width: 900px){ .col-8,.col-6,.col-4{grid-column: span 12}}
+
+    /* Cards */
+    .card{
+      background: linear-gradient(180deg, rgba(18,22,27,.9), rgba(18,22,27,.7));
+      border:1px solid #222a3a; border-radius: var(--radius-xl); box-shadow: var(--shadow);
+      padding:18px 18px 16px; position:relative; overflow:hidden;
+    }
+    .card h3{margin:6px 0 12px; font-size:22px}
+    .tag{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#111; background:var(--good); padding:6px 10px; border-radius:999px; font-weight:700}
+    .badge{display:inline-block; padding:6px 10px; border-radius:10px; font-size:12px; border:1px solid #2a3246; color:var(--muted);}
+
+    /* Timeline */
+    .timeline{margin:6px 0 2px;}
+    .step{display:flex; gap:14px; padding:14px 8px; border-top:1px dashed #2a3246}
+    .step:first-child{border-top:none}
+    .dot{width:14px; height:14px; border-radius:50%; background:var(--brand); margin-top:5px; box-shadow:0 0 0 4px rgba(124,140,255,.15)}
+    .meta{font-size:13px; color:var(--muted)}
+
+    /* List */
+    ul.clean{list-style:none; padding:0; margin:0}
+    ul.clean li{padding:8px 0; border-top:1px dashed #2a3246}
+    ul.clean li:first-child{border-top:none}
+
+    /* Buttons */
+    .btn{appearance:none; border:none; padding:12px 16px; border-radius:14px; font-weight:700; cursor:pointer; box-shadow: var(--shadow);}
+    .btn-primary{background: linear-gradient(90deg, var(--brand), var(--accent)); color:white}
+    .btn-ghost{background: #1b2130; color: var(--muted); border:1px solid #2a3246}
+
+    /* Countdown */
+    .countdown{display:flex; gap:12px; justify-content:center; margin:20px 0 0}
+    .tile{background:#10141a; border:1px solid #202636; border-radius:14px; padding:14px 18px; min-width:78px; text-align:center}
+    .tile .num{font-size:28px; font-weight:800}
+    .tile .lbl{font-size:12px; color:var(--muted)}
+
+    /* Notes */
+    .note{display:flex; align-items: center; gap:10px; padding:10px 12px; border:1px dashed #2a3246; border-radius:12px; margin-top:10px}
+    .note input{flex:1; background:transparent; border:none; color:var(--ink); outline:none}
+
+    /* Footer */
+    footer{padding:40px 16px; text-align:center; color:var(--muted)}
+
+    /* Confetti */
+    .confetti{position:fixed; inset:0; pointer-events:none; overflow:hidden}
+    .piece{position:absolute; top:-20px; font-size:20px; animation: fall linear forwards; opacity:.9}
+    @keyframes fall{ to { transform: translateY(110vh) rotate(720deg);} }
+
+    /* Map links */
+    a.map{color:var(--lime); text-decoration:none; border-bottom:1px dashed rgba(182,255,182,.4)}
+    a.map:hover{filter:brightness(1.15)}
+
+    /* Toggle */
+    .toolbar{display:flex; gap:10px; justify-content:center; margin-top:18px}
+    .switch{display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--muted)}
+    .switch input{accent-color: var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="confetti" aria-hidden="true" id="confetti"></div>
+  <header>
+    <h1 class="title">🎂 Viagem de Aniversário da <span style="color:var(--accent)">Luiza</span></h1>
+    <p class="subtitle">Show da <strong>Bea Duarte</strong> — 30/10/2025 — <strong>Teatro Estação BH</strong> 💜</p>
+    <div class="pills">
+      <span class="pill">Uberlândia → Belo Horizonte</span>
+      <span class="pill">Buser • poltronas 13 & 14</span>
+      <span class="pill">Check‑in 30/10 às 07h</span>
+      <span class="pill">Check‑out 31/10 às 19h</span>
+    </div>
+    <div class="shine"></div>
+    <div class="countdown" id="countdown" aria-live="polite"></div>
+    <div class="toolbar">
+      <button class="btn btn-primary" onclick="window.print()">📄 Baixar como PDF</button>
+      <label class="switch"><input type="checkbox" id="confettiToggle" checked> Confete ✨</label>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <!-- LOGÍSTICA CARD -->
+      <div class="card col-8">
+        <span class="tag">LOGÍSTICA</span>
+        <h3>Roteiro Mágico da Viagem</h3>
+
+        <div class="timeline" role="list">
+          <div class="step" role="listitem">
+            <div class="dot"></div>
+            <div>
+              <strong>Saída de UDI • 29/10 (21h) 😊</strong>
+              <div class="meta">Buser — Leito • Poltronas 13 e 14
+                <br>Embarque: <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Rua+Pedro+Jos%C3%A9+Castro%2C+77+-+Tibery%2C+Uberl%C3%A2ndia+-+MG">Rua Pedro José Castro, 77 — Tibery, Uberlândia</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" role="listitem">
+            <div class="dot" style="background:var(--sun)"></div>
+            <div>
+              <strong>Chegada em BH • 30/10 (06h)</strong>
+              <div class="meta">Desembarque: <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pra%C3%A7a+da+Liberdade%2C+10+-+Funcion%C3%A1rios%2C+Belo+Horizonte+-+MG">Praça da Liberdade, 10 — Funcionários</a>
+                <br>Ir direto para o hotel? <em>Sim! Café da manhã de campeãs ☕🥐</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" role="listitem">
+            <div class="dot" style="background:var(--good)"></div>
+            <div>
+              <strong>Hotel / Airbnb</strong>
+              <div class="meta">Check‑in 30/10 às 07h • Check‑out 31/10 às 19h</div>
+            </div>
+          </div>
+
+          <div class="step" role="listitem">
+            <div class="dot" style="background:var(--accent)"></div>
+            <div>
+              <strong>Ida ao Show • 30/10 (18:20)</strong>
+              <div class="meta">UBER até o <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Teatro+Esta%C3%A7%C3%A3o+BH+-+Av.+Cristiano+Machado%2C+11833+-+Vila+Cloris%2C+Belo+Horizonte+-+MG">Teatro Estação BH</a></div>
+            </div>
+          </div>
+
+          <div class="step" role="listitem">
+            <div class="dot" style="background:#8ee3ff"></div>
+            <div>
+              <strong>Retorno ao Hotel</strong>
+              <div class="meta">UBER</div>
+            </div>
+          </div>
+
+          <div class="step" role="listitem">
+            <div class="dot" style="background:#f3a0a0"></div>
+            <div>
+              <strong>Retorno a UDI • 31/10 (20:30)</strong>
+              <div class="meta">Buser — Semi‑leito • Poltronas definidas na hora
+                <br>Embarque: <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Rua+Araguari%2C+359+-+Barro+Preto%2C+Belo+Horizonte+-+MG">Rua Araguari, 359 — Barro Preto</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" role="listitem">
+            <div class="dot" style="background:#9bff8a"></div>
+            <div>
+              <strong>Chegada em UDI • 01/11 (05:40) 😊</strong>
+              <div class="meta">Desembarque: <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Av.+Arlindo+Massaro%2C+752+-+Umuarama%2C+Uberl%C3%A2ndia+-+MG">Av. Arlindo Massaro, 752 — Umuarama</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKLIST / ITENS -->
+      <div class="card col-4">
+        <span class="tag" style="background:var(--sun)">Checklist</span>
+        <h3>O que levar 🎒</h3>
+        <ul class="clean" id="list">
+          <li><label><input type="checkbox"> Ingressos / QR‑Code</label></li>
+          <li><label><input type="checkbox"> Documentos (RG/CPF)</label></li>
+          <li><label><input type="checkbox"> Cartão / PIX</label></li>
+          <li><label><input type="checkbox"> Carregador + cabo</label></li>
+          <li><label><input type="checkbox"> Casaco leve</label></li>
+          <li><label><input type="checkbox"> Água e lanchinhos</label></li>
+          <li><label><input type="checkbox"> Kit conforto (remédios, lenços)</label></li>
+        </ul>
+        <p class="meta">Dica: marque e suas escolhas ficam salvas neste navegador 💾</p>
+      </div>
+
+      <!-- PASSEIOS -->
+      <div class="card col-12">
+        <span class="tag" style="background:var(--accent)">Passeios</span>
+        <h3>Explorar BH com a Lu! 💫</h3>
+        <p class="meta">Ideias para antes/depois do show. Adicione suas próprias notas abaixo — elas ficam guardadinhas no seu navegador.</p>
+        <div id="passeios" class="grid" style="margin-top:6px">
+          <div class="col-4">
+            <div class="badge">Praça da Liberdade</div>
+            <p class="meta">Museus, fotos lindas e jardins iluminados à noite ✨</p>
+          </div>
+          <div class="col-4">
+            <div class="badge">Savassi</div>
+            <p class="meta">Docerias, cafés e lojas pra curtir juntas ☕🧁</p>
+          </div>
+          <div class="col-4">
+            <div class="badge">Mercado Central</div>
+            <p class="meta">Queijinho, doce de leite e presentes de Minas 🧀🍬</p>
+          </div>
+        </div>
+        <div class="note">
+          <input id="note" placeholder="Escreva aqui um passeio que a Luiza vai amar…"/>
+          <button class="btn btn-ghost" id="add">Adicionar</button>
+          <button class="btn btn-ghost" id="clear">Limpar anotações</button>
+        </div>
+        <div id="notesOut" style="margin-top:10px"></div>
+      </div>
+
+      <!-- DADOS DO EVENTO -->
+      <div class="card col-12">
+        <span class="tag" style="background:var(--brand)">Evento</span>
+        <h3>Show da Bea Duarte — 30/10/2025</h3>
+        <ul class="clean">
+          <li><strong>Local:</strong> Teatro Estação BH — <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Teatro+Esta%C3%A7%C3%A3o+BH+-+Av.+Cristiano+Machado%2C+11833+-+Vila+Cloris">Av. Cristiano Machado, 11833 — Vila Cloris</a></li>
+          <li><strong>Chegar por volta de:</strong> 18:20</li>
+          <li><strong>Transporte:</strong> UBER (ida e volta)</li>
+        </ul>
+        <p class="meta">Contagem regressiva acima ☝️ Se ficar verdinha, é hoje! 💚</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Feito com amor para a <strong>Luiza</strong> 💖 — que seu aniversário seja inesquecível!
+  </footer>
+
+  <script>
+    // === Confetti (emoji) ===
+    const confettiEl = document.getElementById('confetti');
+    let confettiOn = true;
+    const EMOJIS = ['✨','💜','🎂','🎶','🌟','💖','🎉','🥳','⭐'];
+    function spawnConfetti(){
+      if(!confettiOn) return;
+      const piece = document.createElement('div');
+      piece.className = 'piece';
+      piece.textContent = EMOJIS[Math.random()*EMOJIS.length|0];
+      piece.style.left = Math.random()*100+'vw';
+      piece.style.animationDuration = (3 + Math.random()*4) + 's';
+      piece.style.transform = `rotate(${Math.random()*360}deg)`;
+      confettiEl.appendChild(piece);
+      setTimeout(()=> piece.remove(), 8000);
+    }
+    let confettiLoop = setInterval(spawnConfetti, 160);
+    document.getElementById('confettiToggle').addEventListener('change', (e)=>{
+      confettiOn = e.target.checked;
+      if(confettiOn){ confettiLoop = setInterval(spawnConfetti, 160);} else { clearInterval(confettiLoop);}  
+    });
+
+    // === Countdown to 30/10/2025 18:20:00 America/Sao_Paulo ===
+    const countdownEl = document.getElementById('countdown');
+    const target = new Date('2025-10-30T21:20:00.000Z'); // ~18:20 BRT (UTC-03)
+    function buildTile(num, lbl){
+      return `<div class="tile"><div class="num">${String(num).padStart(2,'0')}</div><div class="lbl">${lbl}</div></div>`;
+    }
+    function tick(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff < 0) diff = 0;
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor((diff%86400000)/3600000);
+      const m = Math.floor((diff%3600000)/60000);
+      const s = Math.floor((diff%60000)/1000);
+      countdownEl.innerHTML = buildTile(d,'dias')+buildTile(h,'horas')+buildTile(m,'min')+buildTile(s,'seg');
+      countdownEl.style.filter = diff===0 ? 'hue-rotate(120deg) saturate(1.5)' : 'none';
+    }
+    tick(); setInterval(tick, 1000);
+
+    // === Checklist persistence ===
+    const list = document.getElementById('list');
+    function saveChecklist(){
+      const data = [...list.querySelectorAll('input')].map(i=>i.checked);
+      localStorage.setItem('luiza_checklist', JSON.stringify(data));
+    }
+    function loadChecklist(){
+      const data = JSON.parse(localStorage.getItem('luiza_checklist')||'[]');
+      [...list.querySelectorAll('input')].forEach((i,idx)=>{ i.checked = !!data[idx]; i.addEventListener('change', saveChecklist); });
+    }
+    loadChecklist();
+
+    // === Passeios notes ===
+    const noteIn = document.getElementById('note');
+    const addBtn = document.getElementById('add');
+    const clearBtn = document.getElementById('clear');
+    const out = document.getElementById('notesOut');
+    function renderNotes(){
+      const items = JSON.parse(localStorage.getItem('luiza_notes')||'[]');
+      out.innerHTML = items.map((t,i)=>`<div class='note'><span>📝</span><span style='flex:1'>${t}</span><button class='btn btn-ghost' onclick='delNote(${i})'>Remover</button></div>`).join('');
+    }
+    function addNote(){
+      const t = (noteIn.value||'').trim(); if(!t) return; noteIn.value='';
+      const items = JSON.parse(localStorage.getItem('luiza_notes')||'[]');
+      items.push(t); localStorage.setItem('luiza_notes', JSON.stringify(items)); renderNotes();
+    }
+    function delNote(i){
+      const items = JSON.parse(localStorage.getItem('luiza_notes')||'[]');
+      items.splice(i,1); localStorage.setItem('luiza_notes', JSON.stringify(items)); renderNotes();
+    }
+    window.delNote = delNote;
+    addBtn.addEventListener('click', addNote);
+    clearBtn.addEventListener('click', ()=>{ localStorage.removeItem('luiza_notes'); renderNotes(); });
+    renderNotes();
+  </script>
+</body>
+</html>
